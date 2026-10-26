@@ -1,6 +1,6 @@
 {
   "name": "json-to-tag-validate",
-  "version": "1.2.1",
+  "version": "1.4.1",
   "description": "Ultra-lightweight structural validator for JSON-to-tag specifications against spec-repo.",
   "publishConfig": {
     "access": "public"
@@ -30,5 +30,8 @@
     "clean"
   ],
   "author": "KeshavSoft",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "spec-repo": "file:../spec-repo"
+  }
 }

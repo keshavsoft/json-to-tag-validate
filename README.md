@@ -88,10 +88,18 @@ console.log(result);
 
 ## 📁 Versions Available
 
-* **`v2` (Default)**: Full recursive tree traversal returning `{ isValid: boolean, errors: Array<{ path, reason, tagName? }> }`.
+* **`v4` (Default - Modular Check Pipeline)**: Clean traversal engine delegating to isolated, single-responsibility checks under `src/v4/checks/` (`checkPlainObject`, `checkTagName`, `checkTextContent`, `checkChildren`, `checkChildTags`, `checkAttributes`).
+* **`v3`**: Decoupled traversal engine + single node inspector.
+  ```javascript
+  import { validate as validateV3 } from "json-to-tag-validate/src/v3/index.js";
+  ```
+* **`v2`**: Recursive tree traversal checking basic JSON shape (`tagName`, `attributes`, `children`).
+  ```javascript
+  import { validate as validateV2 } from "json-to-tag-validate/src/v2/index.js";
+  ```
 * **`v1`**: Flat single-node validator returning `{ isValid: boolean }`.
   ```javascript
-  import { validate as validateV1 } from "@keshavsoft/json-to-tag-validate/src/v1/index.js";
+  import { validate as validateV1 } from "json-to-tag-validate/src/v1/index.js";
   ```
 
 ---

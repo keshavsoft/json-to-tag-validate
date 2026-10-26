@@ -1,0 +1,181 @@
+{
+    "tagName": "table",
+    "attributes": {
+        "class": "table table-hover table-striped align-middle border mb-0"
+    },
+    "children": [
+        {
+            "tagName": "colgroup",
+            "attributes": {
+                "data-role": "table-colgroup"
+            },
+            "children": [
+                {
+                    "tagName": "col",
+                    "attributes": {
+                        "width": "300px"
+                    }
+                },
+                {
+                    "tagName": "col",
+                    "attributes": {
+                        "width": "200px"
+                    }
+                },
+                {
+                    "tagName": "col",
+                    "attributes": {
+                        "width": "100px"
+                    }
+                }
+            ]
+        },
+        {
+            "tagName": "thead",
+            "attributes": {
+                "class": "table-dark",
+                "data-role": "table-header"
+            },
+            "children": [
+                {
+                    "tagName": "tr",
+                    "attributes": {
+                        "data-role": "table-header-row"
+                    },
+                    "children": [
+                        {
+                            "tagName": "th",
+                            "textContent": "itemName",
+                            "attributes": {
+                                "class": "py-3 px-3 fw-semibold text-uppercase small"
+                            }
+                        },
+                        {
+                            "tagName": "th",
+                            "textContent": "baseUnit",
+                            "attributes": {
+                                "class": "py-3 px-3 fw-semibold text-uppercase small"
+                            }
+                        },
+                        {
+                            "tagName": "th",
+                            "textContent": "batches",
+                            "attributes": {
+                                "class": "py-3 px-3 fw-semibold text-uppercase small"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "tagName": "tbody",
+            "attributes": {
+                "data-role": "table-body"
+            },
+            "children": [
+                {
+                    "tagName": "tr",
+                    "attributes": {
+                        "class": "align-middle"
+                    },
+                    "children": [
+                        {
+                            "tagName": "td",
+                            "textContent": "0.09/30mm",
+                            "attributes": {
+                                "class": "py-3 px-3 text-secondary"
+                            }
+                        },
+                        {
+                            "tagName": "td",
+                            "textContent": "kgs",
+                            "attributes": {
+                                "class": "py-3 px-3 text-secondary"
+                            }
+                        },
+                        {
+                            "tagName": "td",
+                            "attributes": {
+                                "class": "py-2 px-3 text-center"
+                            },
+                            "children": [
+                                {
+                                    "tagName": "button",
+                                    "textContent": 1,
+                                    "attributes": {
+                                        "class": "btn btn-primary btn-sm"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "tagName": "tfoot",
+            "attributes": {
+                "data-role": "table-footer"
+            },
+            "children": [
+                {
+                    "tagName": "tr",
+                    "attributes": {
+                        "data-role": "table-footer-row"
+                    },
+                    "children": [
+                        {
+                            "tagName": "td",
+                            "children": [
+                                {
+                                    "tagName": "input",
+                                    "attributes": {
+                                        "type": "text",
+                                        "placeholder": "enter itemName",
+                                        "name": "itemName",
+                                        "id": "itemName",
+                                        "list": "itemName",
+                                        "class": "form-control"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "tagName": "td",
+                            "children": [
+                                {
+                                    "tagName": "input",
+                                    "attributes": {
+                                        "type": "text",
+                                        "placeholder": "enter baseUnit",
+                                        "name": "baseUnit",
+                                        "id": "baseUnit",
+                                        "list": "baseUnit",
+                                        "class": "form-control"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "tagName": "td",
+                            "children": [
+                                {
+                                    "tagName": "input",
+                                    "attributes": {
+                                        "type": "text",
+                                        "placeholder": "enter batches",
+                                        "name": "batches",
+                                        "id": "batches",
+                                        "list": "batches",
+                                        "class": "form-control"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
