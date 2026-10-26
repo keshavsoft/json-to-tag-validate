@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>json-to-tag-validate — Live Tree Validator & Diagnostics</title>
+  <meta name="description" content="Live interactive tree traversal validator for json-to-tag specifications powered by Monaco Editor. Pinpoints exact structural errors and shows what's wrong.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Monaco Editor CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/editor/editor.main.min.css">
+
+  <!-- Application Stylesheet -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-logo">✓</div>
+      <div>
+        <span class="brand-title">json-to-tag-validate</span>
+      </div>
+      <span class="brand-badge">v2 Tree Diagnostics</span>
+    </div>
+
+    <div class="header-links">
+      <a href="https://github.com/keshavsoft/json-to-tag-validate" target="_blank" rel="noopener" class="header-link">
+        <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        <span>GitHub</span>
+      </a>
+      <a href="https://keshavsoft.github.io/spec-repo/" target="_blank" class="header-link">
+        <span>spec-repo Hub</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Control Toolbar -->
+  <section class="toolbar">
+    <div class="toolbar-left">
+      <div class="control-group">
+        <label for="sampleSelect" class="control-label">Load Preset:</label>
+        <select id="sampleSelect" class="select-control">
+          <option value="SAMPLE_TABLE" selected>Valid: Table Tree (table.json)</option>
+          <option value="SAMPLE_MISSING_TAG_NAME">Invalid: Missing tagName in child</option>
+          <option value="SAMPLE_BAD_ATTRIBUTES">Invalid: Non-object attributes</option>
+          <option value="SAMPLE_BAD_CHILDREN">Invalid: Non-array children</option>
+          <option value="SAMPLE_UNKNOWN_TAG">Invalid: Unknown tag name</option>
+        </select>
+      </div>
+
+      <button id="resetBtn" class="btn" title="Reset back to valid table sample">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+        </svg>
+        Reset
+      </button>
+
+      <button id="formatBtn" class="btn" title="Format JSON (Shift+Alt+F)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="4 7 4 4 20 4 20 7"/>
+          <line x1="9" y1="20" x2="15" y2="20"/>
+          <line x1="12" y1="4" x2="12" y2="20"/>
+        </svg>
+        Format
+      </button>
+
+      <button id="copyBtn" class="btn btn-primary" title="Copy current JSON content to clipboard">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+        Copy JSON
+      </button>
+    </div>
+
+    <div class="toolbar-right">
+      <div id="statusPill" class="status-pill valid">
+        <span class="status-dot"></span>
+        Validating...
+      </div>
+    </div>
+  </section>
+
+  <!-- Workspace -->
+  <main class="workspace">
+    <!-- Monaco Editor Panel -->
+    <section class="editor-pane">
+      <div id="editorLoading" class="editor-loading">
+        <div class="loading-spinner"></div>
+        <span>Initializing Monaco Editor...</span>
+      </div>
+      <div id="monacoContainer"></div>
+    </section>
+
+    <!-- Diagnostics / What's Wrong Panel -->
+    <aside class="diagnostics-pane">
+      <div class="pane-header">
+        <span class="pane-title">Tree Diagnostics</span>
+      </div>
+      <div class="diagnostics-list" id="diagnosticsList">
+        <!-- Rendered live by index.js -->
+      </div>
+    </aside>
+  </main>
+
+  <!-- Toast -->
+  <div id="toastNotice" class="toast-notice"></div>
+
+  <!-- Monaco AMD Loader -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script>
+
+  <!-- Sample data -->
+  <script src="./js/sampleData.js"></script>
+
+  <!-- Application Controller -->
+  <script src="./js/index.js"></script>
+</body>
+</html>
