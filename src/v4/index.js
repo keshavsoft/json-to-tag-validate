@@ -1,6 +1,7 @@
-import { traverse } from "./traverse/index.js";
+import { traverse } from "json-traversal";
 import { runChecks } from "./checks/index.js";
 import { tags as defaultTags } from "spec-repo";
+
 
 
 /**
